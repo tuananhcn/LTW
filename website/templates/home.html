@@ -1,0 +1,274 @@
+{%extends "index.html"%} {% block title%}Verve & Co.{%endblock%} {% block
+content%}
+
+<!-- <div class="header">
+  <div class="container">
+    <div class="row">
+      <div class="col-2">
+        <h1>
+          Unleash Your Style, <br />
+          Embrace Your Verve
+        </h1>
+        <p>
+          Unlock Your Style Potential: Explore a Diverse Collection of Exquisite
+          Fashion and Accessories for Every Occasion
+        </p>
+        <a href="/all_products" class="btn">Explore Now &#8594;</a>
+      </div>
+      <div class="col-2 image-wraper">
+        <img src="static/images/hero-image.png" />
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Brands -->
+
+<!-- <div class="brands">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-5">
+        <a href="https://www2.hm.com/en_us/index.html" target="_blank"
+          ><img src="static/images/brand1.png"
+        /></a>
+      </div>
+      <div class="col-5">
+        <a href="https://www.lacoste.com/us/" target="_blank"
+          ><img src="static/images/brand2.png"
+        /></a>
+      </div>
+      <div class="col-5">
+        <a href="https://www.levi.com/US/en_US/" target="_blank"
+          ><img src="static/images/brand3.png"
+        /></a>
+      </div>
+      <div class="col-5">
+        <a href="https://www.shopify.com/" target="_blank"></a
+        ><img src="static/images/brand4.png" />
+      </div>
+      <div class="col-5">
+        <a href="https://obeyclothing.com/" target="_blank"><img src="static/images/brand5.png" /></a>
+      </div>
+    </div>
+  </div>
+</div> -->
+<!-- Featured Products -->
+<div class="slideshow-container">
+  <div class="mySlides fade">
+    <img src="{{url_for('static', filename='images/336351041_594371509015565_3296224381535950742_n.png')}}" style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="{{url_for('static', filename='images/336599841_3532818443711094_4449159428268670513_n.png')}}" style="width:100%">
+  </div>
+
+  <div class="mySlides fade">
+    <img src="{{url_for('static', filename='images/336353508_246410884485071_6861983400113567866_n.png')}}" style="width:100%">
+  </div>
+
+  <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+  <a class="next" onclick="plusSlides(1)">&#10095;</a>
+</div>
+
+<!-- Dong 2 -->
+
+<div class="image-wrapper">
+  <img src="{{url_for('static', filename='images/nu.png')}}" alt="First Image">
+  <img src="{{url_for('static', filename='images/nam.png')}}" alt="Second Image">
+</div>
+
+<div class="newarr"><img src="{{url_for('static', filename='images/Screenshot 2023-04-13 120342.png')}}"></div>
+
+
+<div class="gallery">
+  <figure class="gallery__item gallery__item--1">
+    <img style="width: 600px; padding-bottom: 150px;" src="{{url_for('static', filename='images/Property 1=Default.png')}}" class="gallery__img"
+      alt="Image 1">
+  </figure>
+  <figure class="gallery__item gallery__item--2">
+    <img style="padding-left: 0px;" src="{{url_for('static', filename='images/xanh 2.png')}}" class="gallery__img" alt="Image 2">
+  </figure>
+  <figure class="gallery__item gallery__item--3">
+    <img style="padding-left: 0px;" src="{{url_for('static', filename='images/xanh 3.png')}}" class="gallery__img" alt="Image 3">
+  </figure>
+  <figure class="gallery__item gallery__item--4">
+    <img style="padding-left: 0px;" src="{{url_for('static', filename='images/xanh 4.png')}}" class="gallery__img" alt="Image 4">
+  </figure>
+  <figure class="gallery__item gallery__item--5">
+    <img style="padding-left: 0px;" src="{{url_for('static', filename='images/xanh 5.png')}}" class="gallery__img" alt="Image 5">
+  </figure>
+
+</div>
+
+
+<div class="special-item">SẢN PHẨM NỔI BẬT</div>
+<div class="image-grid">
+  <img src="{{url_for('static', filename='images/336351041_594371509015565_3296224381535950742_n.png')}}">
+  <img src="{{url_for('static', filename='images/336351041_594371509015565_3296224381535950742_n.png')}}">
+  <img src="{{url_for('static', filename='images/336351041_594371509015565_3296224381535950742_n.png')}}">
+  <img src="{{url_for('static', filename='images/336351041_594371509015565_3296224381535950742_n.png')}}">
+</div>
+<div class="small-container">
+  <h2 class="title">Featured Products</h2>
+  <div class="row">
+    {% for product in featuresProduct%}
+    <div class="col-4">
+      <a href="/product_detail/{{product[0]}}"><img src="{{ product[5]}}" /></a>
+      <h4>{{product[1]}}</h4>
+      {%set rate = product[3]|int%}
+      <div class="rating">
+        {%for i in range(0, rate) %}
+        <i class="fa fa-star"></i>
+        {%endfor%} {%for i in range(rate, 5) %}
+        <i class="fa fa-star-o"></i>
+        {%endfor%}
+        <p>{{product[6]}}</p>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+  <h2 class="title">Latest Products</h2>
+  <div class="row">
+    {% for product in latestProducts%}
+    <div class="col-4">
+      <a href="/product_detail/{{product[0]}}"><img src="{{ product[5]}}" /></a>
+      <div class="detail">
+        <h4>{{product[1]}}</h4>
+        {%set rate = product[3]|int%}
+        <div class="rating">
+          {%for i in range(0, rate) %}
+          <i class="fa fa-star"></i>
+          {%endfor%} {%for i in range(rate, 5) %}
+          <i class="fa fa-star-o"></i>
+          {%endfor%}
+          <p>{{product[6]}}</p>
+        </div>
+      </div>
+    </div>
+    {%endfor%}
+  </div>
+</div>
+
+<!-- Offer -->
+<div class="offer">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-2">
+        <img
+          src="https://lp2.hm.com/hmgoepprod?set=quality%5B79%5D%2Csource%5B%2Ff7%2Fbe%2Ff7be17a7bbf4d699f08fd13f8f153d3bea32673e.jpg%5D%2Corigin%5Bdam%5D%2Ccategory%5B%5D%2Ctype%5BDESCRIPTIVESTILLLIFE%5D%2Cres%5Bm%5D%2Chmver%5B2%5D&call=url[file:/product/main]"
+          class="offer-img"
+        />
+      </div>
+      <div class="col-2">
+        <p>Exclusively Available on Verve & Co.</p>
+        <h1>Relaxed Fit Hoodie Light blue/NASA</h1>
+        <small
+          >Relaxed-fit sweatshirt hoodie in cotton fabric with a printed motif
+          at front and back and soft, brushed inside.<br
+        /></small>
+        <a href="/product_detail/11" class="btn">Buy Now &#8594;</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Testimonial -->
+<div class="testimonial">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-3">
+        <i class="fa fa-quote-left"></i>
+        <p>
+          is your one-stop shop for designer pieces at an affordable price. With
+          an ever-changing selection of clothes for men, women, and children,
+          you’ll find something for any occasion.
+        </p>
+        <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1628157588553-5eeea00af15c?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGF2YXRhcnxlbnwwfHwwfHx8MA%3D%3D"
+        />
+        <h3>LEIO Mc.</h3>
+      </div>
+      <div class="col-3">
+        <i class="fa fa-quote-left"></i>
+        <p>
+          it is a budget-friendly clothing store that has colorful and trendy
+          pieces for men and women. Their selection of graphic tees, sweatpants
+          and joggers, and sneakers
+        </p>
+        <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8N3x8YXZhdGFyfGVufDB8fDB8fHww"
+        />
+        <h3>MIKE A.</h3>
+      </div>
+      <div class="col-3">
+        <i class="fa fa-quote-left"></i>
+        <p>
+          is a luxurious department store that carries designer clothes and
+          accessories. They have an extensive collection of high-end fashion
+          from top names like Prada, Gucci, and Chanel.
+        </p>
+        <div class="rating">
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+          <i class="fa fa-star"></i>
+        </div>
+        <img
+          src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8YXZhdGFyfGVufDB8fDB8fHww"
+        />
+        <h3>KAREN P.</h3>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Feadtued Categories -->
+
+<div class="guarantee">
+  <div class="small-container">
+    <div class="row">
+      <div class="col-3">
+        <div class="grey-circle">
+          <img src="static/images/icon-delivery.png" />
+        </div>
+        <div style="display: flex; align-items: center; flex-direction: column">
+          <h3 className=" text-xl font-bold mb-2">FREE AND FAST DELIVERY</h3>
+          <p>Free delivery for all orders over $140</p>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="grey-circle">
+          <img src="static/images/Icon-Customer.png" />
+        </div>
+        <div style="display: flex; align-items: center; flex-direction: column">
+          <h3 className=" text-xl font-bold mb-2">24/7 CUSTOMER SERVICE</h3>
+          <p>Friendly 24/7 customer support</p>
+        </div>
+      </div>
+      <div class="col-3">
+        <div class="grey-circle">
+          <img src="static/images/icon-secure.png" />
+        </div>
+        <div style="display: flex; align-items: center; flex-direction: column">
+          <h3 className=" text-xl font-bold mb-2">MONEY BACK GUARANTEE</h3>
+          <p>We return money within 30 days</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
