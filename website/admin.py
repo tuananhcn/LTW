@@ -5,10 +5,10 @@ admin = Blueprint("admin", __name__)
 sqldbname = 'LAPTRINHWEB.db'
 def admin_required(f):
     def decorated_function(*args, **kwargs):
-        if 'user_id' not in session or 'quyen' not in session or session['quyen'] != 1:
-            flash("You must log in as an admin to access this page", "error")
-            return redirect(url_for('admin.login'))
-        return f(*args, **kwargs)
+      if 'current_user' not in session or 'quyen' not in session['current_user'] or session['current_user']['quyen'] != 1:
+          flash("You must log in as an admin to access this page", "error")
+          return redirect(url_for('admin.login'))
+      return f(*args, **kwargs)
     return decorated_function
 def get_obj_user(username,password):
     result =[]
@@ -32,6 +32,7 @@ def index():
   conn.close()
   return render_template('admin/dashboard.html', storages=storages)
 @admin.route('/users')
+
 def Users():
   conn = sqlite3.connect(sqldbname)
   cursor = conn.cursor()
@@ -41,6 +42,7 @@ def Users():
   conn.close()
   return render_template('admin/users.html', storages=storages)
 @admin.route('/users/add', methods=['GET','POST'])
+
 def addUser():
   if request.method == 'POST':
     name = request.form['name']
@@ -56,6 +58,7 @@ def addUser():
     return redirect(url_for('admin.Users'))
   return render_template('admin/addUser.html')
 @admin.route('/add', methods=['GET','POST'])
+
 def add():
   if request.method == 'POST':
     product = request.form['Product']
@@ -75,6 +78,7 @@ def add():
     return redirect(url_for('admin.index'))
   return render_template('admin/add.html')
 @admin.route('/edit/<int:id>', methods=['GET', 'POST'])
+
 def edit_product(id):
   conn = sqlite3.connect(sqldbname)
   cursor = conn.cursor()
@@ -98,6 +102,7 @@ def edit_product(id):
     return redirect(url_for("admin.index"))
   return render_template("admin/edit.html", storage=storage)
 @admin.route('/users/edit/<int:id>', methods=['GET', 'POST'])
+
 def edit_user(id):
   conn = sqlite3.connect(sqldbname)
   cursor = conn.cursor()
@@ -118,6 +123,7 @@ def edit_user(id):
     return redirect(url_for("admin.Users"))
   return render_template("admin/editUser.html", storage=storage)
 @admin.route('/delete/<int:id>', methods=['POST'])
+
 def delete(id):
   conn = sqlite3.connect(sqldbname)
   cursor = conn.cursor()
@@ -127,6 +133,7 @@ def delete(id):
   flash("You have successfully deleted the item", "success")
   return redirect(url_for('admin.index'))
 @admin.route('/users/delete/<int:id>', methods=['POST'])
+
 def deleteUser(id):
   conn = sqlite3.connect(sqldbname)
   cursor = conn.cursor()
@@ -143,14 +150,25 @@ def login():
         obj_user = get_obj_user(username,password)
         if obj_user:
             obj_user ={
-                "id" : obj_user[0],
+                "user_id" : obj_user[0],
                 "name": obj_user[1],
                 "email":obj_user[2],
-                "quyen": obj_user[3]
+                "quyen": obj_user[4]
             }
             session['current_user'] = obj_user
+            print(session['current_user'])
+            if session['current_user']['quyen'] != 1:
+              flash("You have to be admin to log in this page", "error")
+              return redirect(url_for('admin.login'))
             flash("You have log in successfully", "success")
-            return redirect(url_for('admin.index'))
+            return redirect(url_for("admin.Users"))
         flash("Please check your username and password", 'error')
         return redirect(url_for('admin.login'))
-    return render_template('login.html')
+        
+    return render_template('admin/login.html')
+@admin.route('/logout')
+def logout():
+    # Remove the user's data from the session
+    session.pop('current_user', None)
+    # Redirect to the login page or any other desired page
+    return redirect(url_for('admin.login'))
