@@ -43,10 +43,7 @@ a {
 
 #cart .form-container {}
 
-/* .container {
-  display: grid;
-  grid-template-columns: 290px 2fr;
-} */
+
 
 nav ul li a:hover {
   color: #00abff;

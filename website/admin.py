@@ -75,7 +75,7 @@ def add():
     conn.commit()
     conn.close()
     flash("You have added successfully", "success")
-    return redirect(url_for('admin.index'))
+    return redirect("/admin")
   return render_template('admin/add.html')
 @admin.route('/edit/<int:id>', methods=['GET', 'POST'])
 
@@ -99,7 +99,7 @@ def edit_product(id):
     conn.commit()
     conn.close()
     flash("Product updated successfully!", "success")
-    return redirect(url_for("admin.index"))
+    return redirect("/admin")
   return render_template("admin/edit.html", storage=storage)
 @admin.route('/users/edit/<int:id>', methods=['GET', 'POST'])
 
@@ -119,7 +119,7 @@ def edit_user(id):
     cursor.execute("Update user set name = ?, email = ?, password = ?, quyen = ? where user_id = ?", (name, email, password, quyen, id))
     conn.commit()
     conn.close()
-    flash("Product updated successfully!", "success")
+    flash("User updated successfully!", "success")
     return redirect(url_for("admin.Users"))
   return render_template("admin/editUser.html", storage=storage)
 @admin.route('/delete/<int:id>', methods=['POST'])
@@ -131,7 +131,7 @@ def delete(id):
   conn.commit()
   conn.close()
   flash("You have successfully deleted the item", "success")
-  return redirect(url_for('admin.index'))
+  return redirect("/admin")
 @admin.route('/users/delete/<int:id>', methods=['POST'])
 
 def deleteUser(id):

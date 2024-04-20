@@ -36,13 +36,20 @@
           <li><a href="/all_products">Products</a></li>
           <li><a href="/about">About</a></li>
           <li><a href="/contact">Contact</a></li>
+          {% if user_name %}
+          <li><a href="/order">Order</a></li>
+          <li><a href="/logout">Log out</a></li>
+          {% endif %}
+
         </ul>
       </nav>
     </label>
     <div class="logo"><img src="{{url_for('static', filename='images/UntitledProject.jpg')}}"></div>
     <div style="display: flex;justify-content: space-between;flex-basis: 150px;">
-      <div class="cart"><a href="/cart" class="cart"><i style="color: rgb(65, 65, 65);" class="fa fa-shopping-bag"></i></a></div>
-      <div class="avt"><a href="/login" class="cart"><i style="color: rgb(65, 65, 65);" class="fa fa-user"></i></a></div>
+      <div class="cart"><a href="/cart" class="cart"><i style="color: rgb(65, 65, 65);"
+            class="fa fa-shopping-bag"></i></a></div>
+      <div class="avt"><a href="/login" class="cart"><i style="color: rgb(65, 65, 65);" class="fa fa-user"></i></a>
+      </div>
     </div>
   </div>
 
@@ -68,6 +75,11 @@
         <a href="/all_products">Products</a>
         <a href="/about">About</a>
         <a href="/contact">Contact</a>
+        {% if user_name %}
+        <a href="/order">Order</a>
+        <a class="tab" href="/logout">Log out</a>
+        {% endif %}
+
       </div>
       <div style="margin: 10px 67px;" class="menu-icon">
         <span class="fa-stack">
@@ -108,7 +120,7 @@
               </div>
             </div>
             <div class="footer-col-2">
-              <img src="{{url_for('static', filename='images/UntitledProject.jpg')}}" alt="logo" height="150px" 
+              <img src="{{url_for('static', filename='images/UntitledProject.jpg')}}" alt="logo" height="150px"
                 style="border-radius: 8px" />
               <p>
                 Our Purpose Is To Sustainably Make the Pleasure and Benefits of

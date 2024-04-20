@@ -10,6 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
     rel="stylesheet" />
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+  {% if request.path != '/admin/login' %}
+  <style>
+    /* Define your CSS styles here */
+    .container {
+      display: grid;
+      grid-template-columns: 290px 2fr;
+    }
+  </style>
+  {% endif %}
 </head>
 
 <body>
@@ -113,7 +122,7 @@
   </div>
 
   <!-- Footer -->
-  <div class="footer">
+  <!-- <div class="footer">
     <div class="container">
       <div class="row">
         <div class="footer-col-1">
@@ -153,8 +162,8 @@
       </div>
       <hr />
       <p class="copyright">Copyright 2023 - To-Today</p>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
 
   <!-- javascript -->
 
