@@ -903,13 +903,13 @@ nav.nav-menu ul li {
     position: absolute;
     background-color: #fff;
     transition: 0.5s ease;
-    transform: translateX(-222px);
+    transform: translateX(-350px);
     z-index: 3;
   }
 
   input {
-    display: none;
-    visibility: hidden;
+    /* display: none; */
+    /* visibility: hidden; */
     -webkit-appearance: none;
   }
 
@@ -975,7 +975,7 @@ nav.nav-menu ul li {
   }
 
   input:checked~.nav-menu {
-    transform: translateX(-22px);
+    transform: translateX(-80px);
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
   }
 
@@ -1013,7 +1013,7 @@ nav.nav-menu ul li {
   }
 
   .show-menu {
-    transform: translateX(0);
+    transform: translateX(20px);
   }
 
   /* .logo {

@@ -13,8 +13,36 @@
 </head>
 
 <body>
-  <div style="display: grid;
-    grid-template-columns: 290px 2fr;" class="container">
+  {% if request.endpoint != 'admin.login' %}
+  <div class="menu-mobile">
+    <!-- <div class="nav"> -->
+
+    <!-- </div> --><label>
+      <input style="display: none;" type="checkbox">
+      <div class="toggle">
+        <span class="top_line common"></span>
+        <span class="middle_line common"></span>
+        <span class="bottom_line common"></span>
+      </div>
+      <nav class="nav-menu">
+        <h1>MENU</h1>
+        <ul>
+          <li><a href="/admin/">Products</a></li>
+          <li><a href="/admin/users">Users</a></li>
+          <li><a href="/admin/logout">Log out</a></li>
+        </ul>
+      </nav>
+    </label>
+    <div class="logo"><img src="/static/images/UntitledProject.jpg"></div>
+    <div style="display: flex;justify-content: space-between;flex-basis: 150px;">
+      <div class="cart"><a href="/cart" class="cart"><i style="color: rgb(65, 65, 65);"
+            class="fa fa-shopping-bag"></i></a></div>
+      <div class="avt"><a href="/login" class="cart"><i style="color: rgb(65, 65, 65);" class="fa fa-user"></i></a>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+  <div class="container">
     <!-- <div class="navbar">
         <div class="logo">
           <a href="/"
@@ -33,6 +61,7 @@
           </ul>
         </nav>
       </div> -->
+    {% if request.endpoint != 'admin.login' %}
     <div id="menu">
       <div class="menu-item">
         <div class="brand-logo">
@@ -79,6 +108,7 @@
       </div>
 
     </div>
+    {% endif %}
     {% block content%} {% endblock %}
   </div>
 
