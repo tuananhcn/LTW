@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title%}{%endblock%}</title>
-    <link
-      rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
-  </head>
 
-  <body>
-    <div class="container">
-      <div class="navbar">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{% block title%}{%endblock%}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/index.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+</head>
+
+<body>
+  <div style="display: grid;
+    grid-template-columns: 290px 2fr;" class="container">
+    <!-- <div class="navbar">
         <div class="logo">
           <a href="/"
             ><img
@@ -37,80 +32,118 @@
             <li><a href="/admin">Dashboard</a></li>
           </ul>
         </nav>
+      </div> -->
+    <div id="menu">
+      <div class="menu-item">
+        <div class="brand-logo">
+          <img src="{{url_for('static', filename='images/UntitledProject.jpg')}}" alt="">
+        </div>
+        <div class="butt">
+          <a href="/login">
+            <div class="fa fa-user-circle" onclick="toggleForm()"></div>
+          </a>
+          <a href="/all_products">
+            <div class="fa fa-search"></div>
+          </a>
+          <a href="/cart">
+            <div class="fa fa-shopping-bag"></div>
+          </a>
+        </div>
+        <a style="margin-top: 60px;" href="/">Home</a>
+        <a href="/admin/">Products</a>
+        <a href="/admin/users">Users</a>
       </div>
+      <div style="margin: 10px 67px;" class="menu-icon">
+        <span class="fa-stack">
+          <i style="color: rgb(168, 168, 168);" class="fa fa-circle-thin fa-stack-2x"></i>
+          <i style="color: rgb(168, 168, 168);" class="fa fa-facebook fa-stack-1x"></i>
+        </span>
+        <span class="fa-stack">
+          <i style="color: rgb(168, 168, 168);" class="fa fa-circle-thin fa-stack-2x"></i>
+          <i style="color: rgb(168, 168, 168);" class="fa fa-twitter fa-stack-1x"></i>
+        </span>
+        <span class="fa-stack">
+          <i style="color: rgb(168, 168, 168);" class="fa fa-circle-thin fa-stack-2x"></i>
+          <i style="color: rgb(168, 168, 168);" class="fa fa-youtube fa-stack-1x"></i>
+        </span>
+        <span class="fa-stack">
+          <i style="color: rgb(168, 168, 168);" class="fa fa-circle-thin fa-stack-2x"></i>
+          <i style="color: rgb(168, 168, 168);" class="fa fa-instagram fa-stack-1x"></i>
+        </span>
+      </div>
+      <div style="margin-top: 20px;" class="copyright">
+        <a style="font-size: xx-small; margin-left:  30px ; font-family: 'Lucida Sans', sans-serif;">
+          Copyright @2021 - Bản quyền thuộc TOTO GROUP
+        </a>
+      </div>
+
     </div>
     {% block content%} {% endblock %}
+  </div>
 
-    <!-- Footer -->
-    <div class="footer">
-      <div class="container">
-        <div class="row">
-          <div class="footer-col-1">
-            <h3>Download Our App</h3>
-            <p>Download App for Android and ios mobile phone.</p>
-            <div class="app-logo">
-              <img
-                src=" {{url_for('static', filename='images/google-play-badge.png')}}"
-              />
-              <img
-                src=" {{url_for('static', filename='/images/app-store-badge.png')}}"
-              />
-            </div>
-          </div>
-          <div class="footer-col-2">
-            <img
-              src="{{url_for('static', filename='images/shop-logo.png')}}"
-              alt="logo"
-              width="200px"
-              style="border-radius: 8px"
-            />
-            <p>
-              Our Purpose Is To Sustainably Make the Pleasure and Benefits of
-              Sports Accessible to the Many.
-            </p>
-          </div>
-          <div class="footer-col-3">
-            <h3>Quick Link</h3>
-            <ul>
-              <li>Privacy Policy</li>
-              <li>Terms Of Use</li>
-              <li>FAQ</li>
-              <li>Contact</li>
-            </ul>
-          </div>
-          <div class="footer-col-4">
-            <h3>Follow Us</h3>
-            <ul>
-              <li>Facebook</li>
-              <li>Twitter</li>
-              <li>Instagram</li>
-              <li>Youtube</li>
-            </ul>
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="row">
+        <div class="footer-col-1">
+          <h3>Download Our App</h3>
+          <p>Download App for Android and ios mobile phone.</p>
+          <div class="app-logo">
+            <img src=" {{url_for('static', filename='images/google-play-badge.png')}}" />
+            <img src=" {{url_for('static', filename='/images/app-store-badge.png')}}" />
           </div>
         </div>
-        <hr />
-        <p class="copyright">Copyright 2023 - Verve & Co.</p>
+        <div class="footer-col-2">
+          <img src="{{url_for('static', filename='images/shop-logo.png')}}" alt="logo" width="200px"
+            style="border-radius: 8px" />
+          <p>
+            Our Purpose Is To Sustainably Make the Pleasure and Benefits of
+            Sports Accessible to the Many.
+          </p>
+        </div>
+        <div class="footer-col-3">
+          <h3>Quick Link</h3>
+          <ul>
+            <li>Privacy Policy</li>
+            <li>Terms Of Use</li>
+            <li>FAQ</li>
+            <li>Contact</li>
+          </ul>
+        </div>
+        <div class="footer-col-4">
+          <h3>Follow Us</h3>
+          <ul>
+            <li>Facebook</li>
+            <li>Twitter</li>
+            <li>Instagram</li>
+            <li>Youtube</li>
+          </ul>
+        </div>
       </div>
+      <hr />
+      <p class="copyright">Copyright 2023 - Verve & Co.</p>
     </div>
+  </div>
 
-    <!-- javascript -->
+  <!-- javascript -->
 
-    <script>
-      var MenuItems = document.getElementById("MenuItems");
-      MenuItems.style.maxHeight = "0px";
-      function menutoggle() {
-        if (MenuItems.style.maxHeight == "0px") {
-          MenuItems.style.maxHeight = "200px";
-        } else {
-          MenuItems.style.maxHeight = "0px";
-        }
+  <script>
+    var MenuItems = document.getElementById("MenuItems");
+    MenuItems.style.maxHeight = "0px";
+    function menutoggle() {
+      if (MenuItems.style.maxHeight == "0px") {
+        MenuItems.style.maxHeight = "200px";
+      } else {
+        MenuItems.style.maxHeight = "0px";
       }
-      const navItems = document.getElementsByClassName("tab");
-      for (let j = 0; j < navItems.length; j++) {
-        if (navItems[j].href == location.href) {
-          navItems[j].className = "active";
-        }
+    }
+    const navItems = document.getElementsByClassName("tab");
+    for (let j = 0; j < navItems.length; j++) {
+      if (navItems[j].href == location.href) {
+        navItems[j].className = "active";
       }
-    </script>
-  </body>
+    }
+  </script>
+</body>
+
 </html>

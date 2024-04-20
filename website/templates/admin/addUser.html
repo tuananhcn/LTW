@@ -1,0 +1,31 @@
+{%extends "admin/base.html"%}{% block title%}Verve & Co. | Cart{%endblock%} {%
+    block content%}
+    <div class="small-container">
+      <h1>Add new user to the storage</h1>
+      <form action="/admin/users/add" method="post">
+        <label for="name">name</label>
+        <input type="text" name="name" required />
+        <label for="email">email</label>
+        <input type="text" name="email" required />
+        <label for="password">password</label>
+        <input type="password" name="password" required />
+        <select name="quyen" required>
+            <option value="0">User</option>
+            <option value="1">Administrator</option>
+        </select>
+        <button
+          type="submit"
+          style="width: 200px; height: 40px; cursor: pointer"
+          class="btn"
+        >
+          Add
+        </button>
+        <a
+          href="/admin/users"
+          style="font-size: 1rem; text-decoration: underline; color: #00aedf"
+          >Cancel</a
+        >
+      </form>
+    </div>
+    {%endblock%}
+    
